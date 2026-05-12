@@ -1,0 +1,37 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{cmbright}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+\usepackage[margin=0.5in]{geometry}
+
+\title{RV-Sparse: CSR Sparse Matrix-Vector Multiply}
+\author{Aman Pathak\\\texttt{vajradevam@gmail.com}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+
+\textbf{RV-Sparse} implements sparse matrix-vector multiplication
+\(y = A \times x\) using the Compressed Sparse Row (CSR) format,
+with zero dynamic memory allocation.
+
+\section{Implementation}
+
+The \texttt{sparse\_multiply} function works in two phases:
+
+\begin{enumerate}
+    \item \textbf{CSR construction:} Scan the dense row-major matrix
+          \(A\) and extract non-zero values, column indices, and row
+          pointers into caller-provided buffers.
+    \item \textbf{Multiply:} Compute \(y_i = \sum_{k} values_k
+          \times x_{col\_indices_k}\) for each row \(i\).
+\end{enumerate}
+
+\section{Repository}
+
+\url{https://github.com/vajradevam/RV-Sparse.git}
+
+\end{document}
